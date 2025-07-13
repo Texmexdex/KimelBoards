@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Plan: Kimel 'Smart' Cornhole Boards</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Inter:wght@400;500;700&family=VT323&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: #e2e8f0;
+        }
+        h1, h2, h3 {
+            font-family: 'Poppins', sans-serif;
+        }
+        .glass-card {
+            background: rgba(17, 24, 39, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover:not(.collapsible-container) {
+            border: 1px solid rgba(56, 189, 248, 0.5);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+        }
+        .feature-icon {
+            transition: all 0.3s ease;
+        }
+        .group:hover .feature-icon {
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 10px #38bdf8);
+        }
+        .active-tab {
+            background-color: #0284c7;
+            color: #fff;
+        }
+        .tab-content {
+            display: none;
+        }
+        .active-tab-content {
+            display: block;
+        }
+        .glow-button {
+            box-shadow: 0 0 5px #38bdf8, 0 0 15px #38bdf8, 0 0 25px #38bdf8;
+            transition: all 0.3s ease;
+        }
+        .glow-button:hover {
+            box-shadow: 0 0 10px #38bdf8, 0 0 25px #38bdf8, 0 0 50px #38bdf8;
+        }
+        .animated-gradient {
+            background: linear-gradient(-45deg, #0f172a, #1e3a8a, #0369a1, #0ea5e9);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #38bdf8; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #0ea5e9; }
+        
+        /* Collapsible & Typewriter Styles */
+        .collapsible-header {
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .collapsible-header:hover {
+            background-color: rgba(56, 189, 248, 0.1);
+        }
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.7s ease-in-out;
+        }
+        .collapsible-content.is-open {
+            max-height: 2000px;
+        }
+        .chevron-icon {
+            transition: transform 0.3s ease;
+        }
+        .is-open .chevron-icon {
+            transform: rotate(180deg);
+        }
+        .hacker-text-container {
+            background-color: #020617 !important;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            overflow-x: auto;
+        }
+        .hacker-text {
+            font-family: 'VT323', monospace;
+            color: #39ff14;
+            text-shadow: 0 0 2px #39ff14, 0 0 5px #39ff14;
+            white-space: pre;
+            word-wrap: normal;
+        }
+        
+        /* ASCII Diagram Styles */
+        .diagram-text {
+            font-family: 'VT323', monospace;
+            white-space: pre;
+            font-size: 18px;
+            line-height: 1;
+        }
+        .diagram-text .wire { visibility: hidden; }
+        .diagram-text .component { color: #e2e8f0; text-shadow: 0 0 2px #e2e8f0; }
+        .wire-red { color: #ff4d4d; text-shadow: 0 0 2px #ff4d4d, 0 0 5px #ff4d4d; }
+        .wire-purple { color: #c58af9; text-shadow: 0 0 2px #c58af9, 0 0 5px #c58af9; }
+        .wire-green { color: #39ff14; text-shadow: 0 0 2px #39ff14, 0 0 5px #39ff14; }
+        .wire-blue { color: #55d1ff; text-shadow: 0 0 2px #55d1ff, 0 0 5px #55d1ff; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center p-4 relative overflow-hidden animated-gradient">
+        <div class="absolute inset-0 bg-black/50"></div>
+        <div class="text-center z-10">
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-4 tracking-tight">The Kimel <span class="text-sky-400">Smart</span> Cornhole Project</h1>
+            <p class="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto mb-8">Re-engineering a classic game with superior mechanics, premium convenience, and a fully automated electronic scoring system.</p>
+            <a href="#overview" class="bg-sky-500 text-white font-bold py-3 px-8 rounded-full text-lg glow-button inline-block">Explore the Blueprint</a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-16 md:py-24 space-y-24">
+        <!-- Project Overview -->
+        <section id="overview" class="text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-sky-400">Project Blueprint</h2>
+            <p class="max-w-4xl mx-auto text-slate-400 text-lg">
+                This document outlines the complete build plan for a set of regulation-size cornhole boards, reimagined with a stunning, high-end aesthetic. The design centers on crafting the boards from unique wood slabs, featuring CNC-carved designs—such as the "Kimel" name—which are then filled with a translucent colored epoxy. These epoxy inlays are backlit from beneath with LEDs, creating a striking, illuminated effect. This premium construction is combined with innovative quality-of-life features and a 'smart' electronics package.
+            </p>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features">
+            <div class="max-w-5xl mx-auto">
+                <div class="flex justify-center mb-8 border border-slate-700 rounded-full p-1 max-w-md mx-auto">
+                    <button onclick="showTab('mechanical')" id="mechanical-tab" class="w-1/2 py-2 px-4 rounded-full text-center font-semibold transition-all duration-300 active-tab">Mechanical Features</button>
+                    <button onclick="showTab('smart')" id="smart-tab" class="w-1/2 py-2 px-4 rounded-full text-center font-semibold transition-all duration-300">Smart System</button>
+                </div>
+                <div id="mechanical-content" class="tab-content active-tab-content"><div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"><div class="glass-card p-6 group"><i data-lucide="arrow-down-circle" class="w-12 h-12 mb-4 text-sky-400 feature-icon"></i><h3 class="text-xl font-semibold mb-2 text-white">Slide-Through Chute</h3><p class="text-slate-400">A 6" half-pipe PVC chute under the board funnels scored bags into a protected collection box at the rear, eliminating retrieval hassle.</p></div><div class="glass-card p-6 group"><i data-lucide="package" class="w-12 h-12 mb-4 text-sky-400 feature-icon"></i><h3 class="text-xl font-semibold mb-2 text-white">Easy Transport</h3><p class="text-slate-400">Boards latch face-to-face, integrated handles provide a clean grip, and magnetic leg storage prevents flopping during carry.</p></div><div class="glass-card p-6 group"><i data-lucide="scaling" class="w-12 h-12 mb-4 text-sky-400 feature-icon"></i><h3 class="text-xl font-semibold mb-2 text-white">All-Terrain Leveling</h3><p class="text-slate-400">Adjustable leveling feet are installed on each leg, ensuring a perfectly stable playing surface on any uneven ground.</p></div><div class="glass-card p-6 group"><i data-lucide="shield" class="w-12 h-12 mb-4 text-sky-400 feature-icon"></i><h3 class="text-xl font-semibold mb-2 text-white">Score Protection</h3><p class="text-slate-400">A plywood or plexiglass roof over the collection box prevents bags sliding off the back from causing score confusion.</p></div><div class="glass-card p-6 group"><i data-lucide="truck" class="w-12 h-12 mb-4 text-sky-400 feature-icon"></i><h3 class="text-xl font-semibold mb-2 text-white">Wheeled Transport</h3><p class="text-slate-400">One board features two fold-out wheels, allowing the latched-together unit to be rolled like luggage for ultimate portability.</p></div></div></div>
+                <div id="smart-content" class="tab-content"><div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"><div class="glass-card p-6 group"><i data-lucide="cpu" class="w-12 h-12 mb-4 text-sky-400 feature-icon"></i><h3 class="text-xl font-semibold mb-2 text-white">ESP32 Core</h3><p class="text-slate-400">A powerful ESP32 microcontroller on each board manages all sensors, lighting, and scoring logic, with Wi-Fi for future upgrades.</p></div><div class="glass-card p-6 group"><i data-lucide="scan-line" class="w-12 h-12 mb-4 text-sky-400 feature-icon"></i><h3 class="text-xl font-semibold mb-2 text-white">IR Break-Beam Sensor</h3><p class="text-slate-400">A highly reliable infrared sensor detects when a bag passes through the chute, automatically adding 3 points.</p></div><div class="glass-card p-6 group"><i data-lucide="lightbulb" class="w-12 h-12 mb-4 text-sky-400 feature-icon"></i><h3 class="text-xl font-semibold mb-2 text-white">RGBIC LED Lighting</h3><p class="text-slate-400">Addressable LEDs in the hole flash for score confirmation, while a strip on the board edge acts as a digital scoreboard (0-21).</p></div><div class="glass-card p-6 group"><i data-lucide="mouse-pointer-click" class="w-12 h-12 mb-4 text-sky-400 feature-icon"></i><h3 class="text-xl font-semibold mb-2 text-white">Manual Score Control</h3><p class="text-slate-400">Tactile buttons allow for adding points for bags on the board, correcting errors, and resetting the game score to zero.</p></div><div class="glass-card p-6 group"><i data-lucide="battery-charging" class="w-12 h-12 mb-4 text-sky-400 feature-icon"></i><h3 class="text-xl font-semibold mb-2 text-white">Rechargeable Power</h3><p class="text-slate-400">Powered by a simple 5V USB power bank or a LiPo battery with a TP4056 charging module for a clean, portable setup.</p></div><div class="glass-card p-6 group"><i data-lucide="bar-chart-3" class="w-12 h-12 mb-4 text-sky-400 feature-icon"></i><h3 class="text-xl font-semibold mb-2 text-white">Visual Scoreboard</h3><p class="text-slate-400">A 22-LED strip displays the score from 0-21. Colors change to indicate progress, with a special animation for the winning point.</p></div></div></div>
+            </div>
+        </section>
+
+        <!-- Build Plan Section -->
+        <section id="build-plan">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-sky-400">The Build Plan: Core Assets</h2>
+                <p class="max-w-4xl mx-auto text-slate-400 text-lg">Here are the essential assets required to bring the 'Smart' Cornhole boards to life. This includes the firmware for the microcontroller, the electronic wiring schematic, and the design files for custom-cut components.</p>
+            </div>
+
+            <div class="space-y-8 max-w-6xl mx-auto">
+                <!-- Step 1: The Code (Collapsible) -->
+                <div class="glass-card overflow-hidden collapsible-container">
+                    <div id="firmware-header" class="collapsible-header p-6 flex justify-between items-center">
+                        <div>
+                            <h3 class="text-2xl font-semibold text-white flex items-center"><i data-lucide="file-code-2" class="w-8 h-8 mr-3 text-sky-400"></i>Step 1: The ESP32 Firmware</h3>
+                            <p class="text-slate-400 mt-2">The C++/Arduino code that runs on the ESP32. Click to expand and view the animated source code.</p>
+                        </div>
+                        <i data-lucide="chevron-down" class="w-8 h-8 text-sky-400 chevron-icon"></i>
+                    </div>
+                    <div id="firmware-content" class="collapsible-content">
+                        <div class="hacker-text-container m-4 mt-0"><pre><code id="hacker-code" class="hacker-text"></code></pre></div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Wiring Diagram (Collapsible & Animated) -->
+                <div class="glass-card overflow-hidden collapsible-container">
+                    <div id="diagram-header" class="collapsible-header p-6 flex justify-between items-center">
+                        <div>
+                            <h3 class="text-2xl font-semibold text-white flex items-center"><i data-lucide="waypoints" class="w-8 h-8 mr-3 text-sky-400"></i>Step 2: The Wiring Diagram</h3>
+                            <p class="text-slate-400 mt-2">An animated ASCII schematic of the electronic components. Click to see the connections drawn in real-time.</p>
+                        </div>
+                        <i data-lucide="chevron-down" class="w-8 h-8 text-sky-400 chevron-icon"></i>
+                    </div>
+                    <div id="diagram-content" class="collapsible-content">
+                        <div class="hacker-text-container m-4 mt-0">
+                            <pre id="diagram-pre"><code id="diagram-code" class="diagram-text"></code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Design Concepts Gallery -->
+                <div class="glass-card overflow-hidden">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-2 text-white flex items-center"><i data-lucide="image" class="w-8 h-8 mr-3 text-sky-400"></i>Step 3: Design Concepts</h3>
+                        <p class="text-slate-400">A gallery of potential design concepts showcasing the backlit epoxy and wood construction. Use the arrows to browse the examples.</p>
+                    </div>
+                    <div class="p-6 bg-gray-900/70 relative flex justify-center items-center min-h-[400px]">
+                        <!-- Image container -->
+                        <div id="gallery-container">
+                            <img id="gallery-image" src="http://googleusercontent.com/file_content/18" alt="Cornhole Design Concept" class="max-h-96 w-auto rounded-lg border-2 border-slate-700 transition-opacity duration-300 ease-in-out">
+                        </div>
+                        <!-- Navigation arrows -->
+                        <button id="prev-btn" class="absolute top-1/2 left-4 md:left-8 transform -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/80 transition-colors z-10">
+                            <i data-lucide="chevron-left" class="w-6 h-6 md:w-8 md:h-8"></i>
+                        </button>
+                        <button id="next-btn" class="absolute top-1/2 right-4 md:right-8 transform -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/80 transition-colors z-10">
+                            <i data-lucide="chevron-right" class="w-6 h-6 md:w-8 md:h-8"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900/50 border-t border-slate-800 py-8">
+        <div class="container mx-auto text-center text-slate-400">
+            <p>&copy; 2024 Advanced Cornhole Systems. A modern take on a classic game.</p>
+            <p class="text-sky-400 font-semibold mt-2 text-lg">TeXmExDeX Type Tools 2024</p>
+        </div>
+    </footer>
+
+    <!-- Template for holding the code -->
+    <template id="firmware-template">
+#include &lt;FastLED.h&gt;
+
+// --- PIN DEFINITIONS (CHANGE THESE TO MATCH YOUR WIRING) ---
+#define HOLE_LED_PIN      13
+#define SCORE_LED_PIN     12
+#define IR_SENSOR_PIN     27
+#define ADD_POINT_PIN     32
+#define SUB_POINT_PIN     33
+#define RESET_SCORE_PIN   25
+
+// --- LED & GAME CONFIG ---
+#define NUM_LEDS_HOLE     20
+#define NUM_LEDS_SCORE    22
+#define BRIGHTNESS        150
+#define LED_TYPE          WS2812B
+#define COLOR_ORDER       GRB
+#define WINNING_SCORE     21
+#define SCORE_IN_HOLE     3
+
+// --- GLOBAL VARIABLES ---
+CRGB hole_leds[NUM_LEDS_HOLE];
+CRGB score_leds[NUM_LEDS_SCORE];
+int currentScore = 0;
+bool gameIsWon = false;
+long lastDebounceTime = 0;
+long debounceDelay = 50;
+int lastAddButtonState = HIGH, lastSubButtonState = HIGH, lastResetButtonState = HIGH;
+int lastSensorState = HIGH;
+
+void setup() {
+  Serial.begin(115200);
+  pinMode(ADD_POINT_PIN, INPUT_PULLUP);
+  pinMode(SUB_POINT_PIN, INPUT_PULLUP);
+  pinMode(RESET_SCORE_PIN, INPUT_PULLUP);
+  pinMode(IR_SENSOR_PIN, INPUT);
+  FastLED.addLeds&lt;LED_TYPE, HOLE_LED_PIN, COLOR_ORDER&gt;(hole_leds, NUM_LEDS_HOLE);
+  FastLED.addLeds&lt;LED_TYPE, SCORE_LED_PIN, COLOR_ORDER&gt;(score_leds, NUM_LEDS_SCORE);
+  FastLED.setBrightness(BRIGHTNESS);
+  startupAnimation();
+  updateScoreboard();
+}
+
+void loop() {
+  if (!gameIsWon) { handleButtons(); checkSensor(); } else { winAnimation(); }
+}
+
+void handleButtons() {
+  if ((millis() - lastDebounceTime) > debounceDelay) {
+    if (digitalRead(ADD_POINT_PIN) == LOW && lastAddButtonState == HIGH) { currentScore = min(WINNING_SCORE, currentScore + 1); updateScoreboard(); }
+    if (digitalRead(SUB_POINT_PIN) == LOW && lastSubButtonState == HIGH) { currentScore = max(0, currentScore - 1); updateScoreboard(); }
+    if (digitalRead(RESET_SCORE_PIN) == LOW && lastResetButtonState == HIGH) { currentScore = 0; gameIsWon = false; updateScoreboard(); }
+    lastAddButtonState = digitalRead(ADD_POINT_PIN);
+    lastSubButtonState = digitalRead(SUB_POINT_PIN);
+    lastResetButtonState = digitalRead(RESET_SCORE_PIN);
+    lastDebounceTime = millis();
+  }
+}
+
+void checkSensor() {
+  int sensorReading = digitalRead(IR_SENSOR_PIN);
+  if (sensorReading == LOW && lastSensorState == HIGH) {
+    currentScore = min(WINNING_SCORE, currentScore + SCORE_IN_HOLE);
+    scoreFlashAnimation(); updateScoreboard(); delay(200);
+  }
+  lastSensorState = sensorReading;
+}
+
+void updateScoreboard() {
+  fill_solid(score_leds, NUM_LEDS_SCORE, CRGB::Black);
+  CRGB scoreColor = (currentScore > 10) ? CRGB::Yellow : CRGB::Blue;
+  for (int i = 0; i <= currentScore; i++) { score_leds[i] = scoreColor; }
+  score_leds[0] = CRGB::White;
+  if (currentScore == WINNING_SCORE) { score_leds[WINNING_SCORE] = CRGB::Red; gameIsWon = true; }
+  FastLED.show();
+}
+
+void startupAnimation() { /* ... full animation code ... */ }
+void scoreFlashAnimation() { /* ... full animation code ... */ }
+void winAnimation() { /* ... full animation code ... */ }
+    </template>
+    
+    <!-- Template for ASCII Diagram -->
+    <template id="diagram-template">
+<span class="component">[5V Power Source]</span><span id="w-pwr-1" class="wire wire-red">+</span><span id="w-pwr-2" class="wire wire-red">-</span><span id="w-pwr-3" class="wire wire-red">-</span><span id="w-pwr-4" class="wire wire-red">-</span><span id="w-pwr-5" class="wire wire-red">-</span><span id="w-pwr-6" class="wire wire-red">-</span><span id="w-pwr-7" class="wire wire-red">-</span><span id="w-pwr-8" class="wire wire-red">-</span><span id="w-pwr-9" class="wire wire-red">-</span><span id="w-pwr-10" class="wire wire-red">-</span><span id="w-pwr-11" class="wire wire-red">-</span><span id="w-pwr-12" class="wire wire-red">-</span><span id="w-pwr-13" class="wire wire-red">-</span><span id="w-pwr-14" class="wire wire-red">-</span><span id="w-pwr-15" class="wire wire-red">-</span><span id="w-pwr-16" class="wire wire-red">-</span><span id="w-pwr-17" class="wire wire-red">-</span><span id="w-pwr-18" class="wire wire-red">-</span><span id="w-pwr-19" class="wire wire-red">-</span><span id="w-pwr-20" class="wire wire-red">-</span><span id="w-pwr-21" class="wire wire-red">-</span><span id="w-pwr-22" class="wire wire-red">-</span><span id="w-pwr-23" class="wire wire-red">-</span><span id="w-pwr-24" class="wire wire-red">-</span><span id="w-pwr-25" class="wire wire-red">-</span><span id="w-pwr-26" class="wire wire-red">-</span><span id="w-pwr-27" class="wire wire-red">-</span><span id="w-pwr-28" class="wire wire-red">-</span><span id="w-pwr-29" class="wire wire-red">-</span><span id="w-pwr-30" class="wire wire-red">-</span><span id="w-pwr-31" class="wire wire-red">-</span><span id="w-pwr-32" class="wire wire-red">-</span><span id="w-pwr-33" class="wire wire-red">-</span><span id="w-pwr-34" class="wire wire-red">-</span><span id="w-pwr-35" class="wire wire-red">-</span><span id="w-pwr-36" class="wire wire-red">-</span><span id="w-pwr-37" class="wire wire-red">-</span><span id="w-pwr-38" class="wire wire-red">-</span><span id="w-pwr-39" class="wire wire-red">-</span><span id="w-pwr-40" class="wire wire-red">-</span><span id="w-pwr-41" class="wire wire-red">-</span><span id="w-pwr-42" class="wire wire-red">-</span><span id="w-pwr-43" class="wire wire-red">-</span><span id="w-pwr-44" class="wire wire-red">-</span><span id="w-pwr-45" class="wire wire-red">-</span><span id="w-pwr-46" class="wire wire-red">-</span><span id="w-pwr-47" class="wire wire-red">-</span><span id="w-pwr-48" class="wire wire-red">-</span><span id="w-pwr-49" class="wire wire-red">-</span><span id="w-pwr-50" class="wire wire-red">-</span><span id="w-pwr-51" class="wire wire-red">-</span><span id="w-pwr-52" class="wire wire-red">-</span><span id="w-pwr-53" class="wire wire-red">-</span><span id="w-pwr-54" class="wire wire-red">-</span><span id="w-pwr-55" class="wire wire-red">-</span><span id="w-pwr-56" class="wire wire-red">-</span><span id="w-pwr-57" class="wire wire-red">-</span><span id="w-pwr-58" class="wire wire-red">-</span><span id="w-pwr-59" class="wire wire-red">-</span><span id="w-pwr-60" class="wire wire-red">+</span>
+<span id="w-pwr-v1" class="wire wire-red">|</span>                                                                     <span id="w-gnd-v1" class="wire wire-purple">|</span>
+<span id="w-pwr-v2" class="wire wire-red">|</span>   <span class="component">.--------------------.</span>                                             <span id="w-gnd-v2" class="wire wire-purple">|</span>
+<span id="w-pwr-v3" class="wire wire-red">+</span><span id="w-pwr-h1" class="wire wire-red">-</span><span id="w-pwr-h2" class="wire wire-red">-</span><span id="w-pwr-h3" class="wire wire-red">&gt;</span><span class="component">| VIN                |</span>                                             <span id="w-gnd-v3" class="wire wire-purple">|</span>
+    <span class="component">|       </span><span class="component">[ESP32]</span><span class="component">      |</span>                                             <span id="w-gnd-v4" class="wire wire-purple">|</span>
+    <span class="component">| GND                |</span><span id="w-gnd-h1" class="wire wire-purple">&lt;</span><span id="w-gnd-h2" class="wire wire-purple">-</span><span id="w-gnd-h3" class="wire wire-purple">-</span><span id="w-gnd-h4" class="wire wire-purple">-</span><span id="w-gnd-h5" class="wire wire-purple">-</span><span id="w-gnd-h6" class="wire wire-purple">-</span><span id="w-gnd-h7" class="wire wire-purple">-</span><span id="w-gnd-h8" class="wire wire-purple">-</span><span id="w-gnd-h9" class="wire wire-purple">-</span><span id="w-gnd-h10" class="wire wire-purple">-</span><span id="w-gnd-h11" class="wire wire-purple">-</span><span id="w-gnd-h12" class="wire wire-purple">-</span><span id="w-gnd-h13" class="wire wire-purple">-</span><span id="w-gnd-h14" class="wire wire-purple">-</span><span id="w-gnd-h15" class="wire wire-purple">-</span><span id="w-gnd-h16" class="wire wire-purple">-</span><span id="w-gnd-h17" class="wire wire-purple">-</span><span id="w-gnd-h18" class="wire wire-purple">-</span><span id="w-gnd-h19" class="wire wire-purple">-</span><span id="w-gnd-h20" class="wire wire-purple">-</span><span id="w-gnd-h21" class="wire wire-purple">-</span><span id="w-gnd-h22" class="wire wire-purple">-</span><span id="w-gnd-h23" class="wire wire-purple">-</span><span id="w-gnd-h24" class="wire wire-purple">-</span><span id="w-gnd-h25" class="wire wire-purple">-</span><span id="w-gnd-h26" class="wire wire-purple">-</span><span id="w-gnd-h27" class="wire wire-purple">-</span><span id="w-gnd-h28" class="wire wire-purple">-</span><span id="w-gnd-h29" class="wire wire-purple">-</span><span id="w-gnd-h30" class="wire wire-purple">-</span><span id="w-gnd-h31" class="wire wire-purple">-</span><span id="w-gnd-h32" class="wire wire-purple">-</span><span id="w-gnd-h33" class="wire wire-purple">-</span><span id="w-gnd-h34" class="wire wire-purple">-</span><span id="w-gnd-h35" class="wire wire-purple">-</span><span id="w-gnd-h36" class="wire wire-purple">-</span><span id="w-gnd-h37" class="wire wire-purple">-</span><span id="w-gnd-h38" class="wire wire-purple">-</span><span id="w-gnd-h39" class="wire wire-purple">-</span><span id="w-gnd-h40" class="wire wire-purple">-</span><span id="w-gnd-h41" class="wire wire-purple">-</span><span id="w-gnd-h42" class="wire wire-purple">-</span><span id="w-gnd-h43" class="wire wire-purple">-</span><span id="w-gnd-h44" class="wire wire-purple">-</span><span id="w-gnd-h45" class="wire wire-purple">-</span><span id="w-gnd-h46" class="wire wire-purple">-</span><span id="w-gnd-h47" class="wire wire-purple">-</span><span id="w-gnd-h48" class="wire wire-purple">-</span><span id="w-gnd-h49" class="wire wire-purple">+</span>
+    <span class="component">'--------------------'</span>                                             <span id="w-gnd-v5" class="wire wire-purple">|</span>
+                                                                          <span id="w-gnd-v6" class="wire wire-purple">|</span>
+    <span class="component">.--------------------.</span>                                             <span id="w-gnd-v7" class="wire wire-purple">|</span>
+    <span class="component">| G32 (ADD)          |</span><span id="w-b1-1" class="wire wire-blue">&lt;</span><span id="w-b1-2" class="wire wire-blue">-</span><span id="w-b1-3" class="wire wire-blue">-</span><span id="w-b1-4" class="wire wire-blue">-</span><span id="w-b1-5" class="wire wire-blue">-</span><span id="w-b1-6" class="wire wire-blue">-</span><span id="w-b1-7" class="wire wire-blue">-</span><span id="w-b1-8" class="wire wire-blue">-</span><span id="w-b1-9" class="wire wire-blue">-</span><span id="w-b1-10" class="wire wire-blue">-</span> <span class="component">[ +1 Button ]</span>                     <span id="w-gnd-v8" class="wire wire-purple">|</span>
+    <span class="component">| G33 (SUB)          |</span><span id="w-b2-1" class="wire wire-blue">&lt;</span><span id="w-b2-2" class="wire wire-blue">-</span><span id="w-b2-3" class="wire wire-blue">-</span><span id="w-b2-4" class="wire wire-blue">-</span><span id="w-b2-5" class="wire wire-blue">-</span><span id="w-b2-6" class="wire wire-blue">-</span><span id="w-b2-7" class="wire wire-blue">-</span><span id="w-b2-8" class="wire wire-blue">-</span><span id="w-b2-9" class="wire wire-blue">-</span><span id="w-b2-10" class="wire wire-blue">-</span> <span class="component">[ -1 Button ]</span>                     <span id="w-gnd-v9" class="wire wire-purple">|</span>
+    <span class="component">| G25 (RST)          |</span><span id="w-b3-1" class="wire wire-blue">&lt;</span><span id="w-b3-2" class="wire wire-blue">-</span><span id="w-b3-3" class="wire wire-blue">-</span><span id="w-b3-4" class="wire wire-blue">-</span><span id="w-b3-5" class="wire wire-blue">-</span><span id="w-b3-6" class="wire wire-blue">-</span><span id="w-b3-7" class="wire wire-blue">-</span><span id="w-b3-8" class="wire wire-blue">-</span><span id="w-b3-9" class="wire wire-blue">-</span><span id="w-b3-10" class="wire wire-blue">-</span> <span class="component">[RST Button ]</span>                     <span id="w-gnd-v10" class="wire wire-purple">|</span>
+    <span class="component">'--------------------'</span>                                             <span id="w-gnd-v11" class="wire wire-purple">|</span>
+                                                                          <span id="w-gnd-v12" class="wire wire-purple">|</span>
+    <span class="component">.--------------------.</span>                                             <span id="w-gnd-v13" class="wire wire-purple">|</span>
+    <span class="component">| G13 (HOLE LED)     |</span><span id="w-l1-1" class="wire wire-green">-</span><span id="w-l1-2" class="wire wire-green">-</span><span id="w-l1-3" class="wire wire-green">-</span><span id="w-l1-4" class="wire wire-green">-</span><span id="w-l1-5" class="wire wire-green">-</span><span id="w-l1-6" class="wire wire-green">-</span><span id="w-l1-7" class="wire wire-green">-</span><span id="w-l1-8" class="wire wire-green">-</span><span id="w-l1-9" class="wire wire-green">-</span><span id="w-l1-10" class="wire wire-green">&gt;</span> <span class="component">[=LED Ring=]</span><span id="w-l1-g1" class="wire wire-purple">-</span><span id="w-l1-g2" class="wire wire-purple">-</span><span id="w-l1-g3" class="wire wire-purple">-</span><span id="w-l1-g4" class="wire wire-purple">-</span><span id="w-l1-g5" class="wire wire-purple">-</span><span id="w-l1-g6" class="wire wire-purple">-</span><span id="w-l1-g7" class="wire wire-purple">-</span><span id="w-l1-g8" class="wire wire-purple">-</span><span id="w-l1-g9" class="wire wire-purple">-</span><span id="w-l1-g10" class="wire wire-purple">-</span><span id="w-l1-g11" class="wire wire-purple">-</span><span id="w-l1-g12" class="wire wire-purple">-</span><span id="w-l1-g13" class="wire wire-purple">+</span>
+    <span class="component">| G12 (SCORE LED)    |</span><span id="w-l2-1" class="wire wire-green">-</span><span id="w-l2-2" class="wire wire-green">-</span><span id="w-l2-3" class="wire wire-green">-</span><span id="w-l2-4" class="wire wire-green">-</span><span id="w-l2-5" class="wire wire-green">-</span><span id="w-l2-6" class="wire wire-green">-</span><span id="w-l2-7" class="wire wire-green">-</span><span id="w-l2-8" class="wire wire-green">-</span><span id="w-l2-9" class="wire wire-green">-</span><span id="w-l2-10" class="wire wire-green">&gt;</span> <span class="component">[=Scoreboard=]</span><span id="w-l2-g1" class="wire wire-purple">-</span><span id="w-l2-g2" class="wire wire-purple">-</span><span id="w-l2-g3" class="wire wire-purple">-</span><span id="w-l2-g4" class="wire wire-purple">-</span><span id="w-l2-g5" class="wire wire-purple">-</span><span id="w-l2-g6" class="wire wire-purple">-</span><span id="w-l2-g7" class="wire wire-purple">-</span><span id="w-l2-g8" class="wire wire-purple">-</span><span id="w-l2-g9" class="wire wire-purple">-</span><span id="w-l2-g10" class="wire wire-purple">-</span><span id="w-l2-g11" class="wire wire-purple">-</span><span id="w-l2-g12" class="wire wire-purple">+</span>
+    <span class="component">'--------------------'</span>                                             <span id="w-gnd-v14" class="wire wire-purple">|</span>
+                                                                          <span id="w-gnd-v15" class="wire wire-purple">|</span>
+    <span class="component">.--------------------.</span>                                             <span id="w-gnd-v16" class="wire wire-purple">|</span>
+    <span class="component">| G27 (IR SENSOR)    |</span><span id="w-ir-1" class="wire wire-blue">&lt;</span><span id="w-ir-2" class="wire wire-blue">-</span><span id="w-ir-3" class="wire wire-blue">-</span><span id="w-ir-4" class="wire wire-blue">-</span><span id="w-ir-5" class="wire wire-blue">-</span><span id="w-ir-6" class="wire wire-blue">-</span><span id="w-ir-7" class="wire wire-blue">-</span><span id="w-ir-8" class="wire wire-blue">-</span><span id="w-ir-9" class="wire wire-blue">-</span><span id="w-ir-10" class="wire wire-blue">-</span> <span class="component">[ IR Receiver ]</span><span id="w-ir-g1" class="wire wire-purple">-</span><span id="w-ir-g2" class="wire wire-purple">-</span><span id="w-ir-g3" class="wire wire-purple">-</span><span id="w-ir-g4" class="wire wire-purple">-</span><span id="w-ir-g5" class="wire wire-purple">-</span><span id="w-ir-g6" class="wire wire-purple">-</span><span id="w-ir-g7" class="wire wire-purple">-</span><span id="w-ir-g8" class="wire wire-purple">-</span><span id="w-ir-g9" class="wire wire-purple">-</span><span id="w-ir-g10" class="wire wire-purple">-</span><span id="w-ir-g11" class="wire wire-purple">-</span><span id="w-ir-g12" class="wire wire-purple">-</span><span id="w-ir-g13" class="wire wire-purple">+</span>
+    <span class="component">'--------------------'</span>                                             <span id="w-gnd-v17" class="wire wire-purple">|</span>
+<span id="w-ire-v1" class="wire wire-red">|</span>                                                                     <span id="w-gnd-v18" class="wire wire-purple">|</span>
+<span id="w-ire-v2" class="wire wire-red">+</span><span id="w-ire-1" class="wire wire-red">-</span><span id="w-ire-2" class="wire wire-red">-</span><span id="w-ire-3" class="wire wire-red">-</span><span id="w-ire-4" class="wire wire-red">-</span><span id="w-ire-5" class="wire wire-red">-</span><span id="w-ire-6" class="wire wire-red">-</span><span id="w-ire-7" class="wire wire-red">-</span><span id="w-ire-8" class="wire wire-red">-</span><span id="w-ire-9" class="wire wire-red">-</span><span id="w-ire-10" class="wire wire-red">-</span><span id="w-ire-11" class="wire wire-red">-</span><span id="w-ire-12" class="wire wire-red">-</span><span id="w-ire-13" class="wire wire-red">-</span><span id="w-ire-14" class="wire wire-red">-</span><span id="w-ire-15" class="wire wire-red">-</span><span id="w-ire-16" class="wire wire-red">-</span><span id="w-ire-17" class="wire wire-red">-</span><span id="w-ire-18" class="wire wire-red">-</span><span id="w-ire-19" class="wire wire-red">-</span><span id="w-ire-20" class="wire wire-red">-</span><span id="w-ire-21" class="wire wire-red">-</span><span id="w-ire-22" class="wire wire-red">-</span><span id="w-ire-23" class="wire wire-red">-</span><span id="w-ire-24" class="wire wire-red">-</span><span id="w-ire-25" class="wire wire-red">-</span><span id="w-ire-26" class="wire wire-red">-</span><span id="w-ire-27" class="wire wire-red">-</span><span id="w-ire-28" class="wire wire-red">-</span><span id="w-ire-29" class="wire wire-red">-</span><span id="w-ire-30" class="wire wire-red">-</span><span id="w-ire-31" class="wire wire-red">-</span><span id="w-ire-32" class="wire wire-red">-</span><span id="w-ire-33" class="wire wire-red">-</span><span id="w-ire-34" class="wire wire-red">-</span><span id="w-ire-35" class="wire wire-red">-</span><span id="w-ire-36" class="wire wire-red">-</span><span id="w-ire-37" class="wire wire-red">-</span><span id="w-ire-38" class="wire wire-red">-</span><span id="w-ire-39" class="wire wire-red">-</span><span id="w-ire-40" class="wire wire-red">-</span><span id="w-ire-41" class="wire wire-red">-</span><span id="w-ire-42" class="wire wire-red">-</span><span id="w-ire-43" class="wire wire-purple">+</span>
+<span class="component">[ IR Emitter  ]</span><span id="w-ire-g1" class="wire wire-purple">-</span><span id="w-ire-g2" class="wire wire-purple">-</span><span id="w-ire-g3" class="wire wire-purple">-</span><span id="w-ire-g4" class="wire wire-purple">-</span><span id="w-ire-g5" class="wire wire-purple">-</span><span id="w-ire-g6" class="wire wire-purple">-</span><span id="w-ire-g7" class="wire wire-purple">-</span><span id="w-ire-g8" class="wire wire-purple">-</span><span id="w-ire-g9" class="wire wire-purple">-</span><span id="w-ire-g10" class="wire wire-purple">-</span><span id="w-ire-g11" class="wire wire-purple">-</span><span id="w-ire-g12" class="wire wire-purple">-</span><span id="w-ire-g13" class="wire wire-purple">-</span><span id="w-ire-g14" class="wire wire-purple">-</span><span id="w-ire-g15" class="wire wire-purple">-</span><span id="w-ire-g16" class="wire wire-purple">-</span><span id="w-ire-g17" class="wire wire-purple">-</span><span id="w-ire-g18" class="wire wire-purple">-</span><span id="w-ire-g19" class="wire wire-purple">-</span><span id="w-ire-g20" class="wire wire-purple">-</span><span id="w-ire-g21" class="wire wire-purple">-</span><span id="w-ire-g22" class="wire wire-purple">-</span><span id="w-ire-g23" class="wire wire-purple">-</span><span id="w-ire-g24" class="wire wire-purple">-</span><span id="w-ire-g25" class="wire wire-purple">-</span><span id="w-ire-g26" class="wire wire-purple">-</span><span id="w-ire-g27" class="wire wire-purple">-</span><span id="w-ire-g28" class="wire wire-purple">-</span><span id="w-ire-g29" class="wire wire-purple">-</span><span id="w-ire-g30" class="wire wire-purple">-</span><span id="w-ire-g31" class="wire wire-purple">-</span><span id="w-ire-g32" class="wire wire-purple">-</span><span id="w-ire-g33" class="wire wire-purple">-</span><span id="w-ire-g34" class="wire wire-purple">-</span><span id="w-ire-g35" class="wire wire-purple">-</span><span id="w-ire-g36" class="wire wire-purple">-</span><span id="w-ire-g37" class="wire wire-purple">-</span><span id="w-ire-g38" class="wire wire-purple">-</span><span id="w-ire-g39" class="wire wire-purple">-</span><span id="w-ire-g40" class="wire wire-purple">-</span><span id="w-ire-g41" class="wire wire-purple">-</span><span id="w-ire-g42" class="wire wire-purple">-</span><span id="w-ire-g43" class="wire wire-purple">/</span>
+    </template>
+
+    <script>
+        lucide.createIcons();
+
+        function showTab(tabName) {
+            const tabs = ['mechanical', 'smart'];
+            tabs.forEach(tab => {
+                document.getElementById(`${tab}-tab`).classList.toggle('active-tab', tab === tabName);
+                document.getElementById(`${tab}-content`).classList.toggle('active-tab-content', tab === tabName);
+            });
+        }
+
+        // --- Collapsible Logic ---
+        function setupCollapsible(headerId, contentId, onOpen) {
+            const header = document.getElementById(headerId);
+            const content = document.getElementById(contentId);
+            let isOpen = false;
+
+            header.addEventListener('click', () => {
+                isOpen = !isOpen;
+                content.classList.toggle('is-open', isOpen);
+                header.parentElement.classList.toggle('is-open', isOpen);
+                if (isOpen && typeof onOpen === 'function') {
+                    onOpen();
+                }
+            });
+        }
+
+        // --- Typewriter for Firmware ---
+        const codeElement = document.getElementById('hacker-code');
+        const codeTemplate = document.getElementById('firmware-template');
+        let typewriterInterval;
+        setupCollapsible('firmware-header', 'firmware-content', () => {
+            typewriter(codeTemplate.innerHTML, codeElement, 5);
+        });
+        
+        function typewriter(text, element, speed) {
+            let i = 0;
+            clearInterval(typewriterInterval);
+            element.innerHTML = "";
+            typewriterInterval = setInterval(() => {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i) === '<' ? '&lt;' : text.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(typewriterInterval);
+                }
+            }, speed);
+        }
+
+        // --- Animated Diagram Logic ---
+        const diagramCodeElement = document.getElementById('diagram-code');
+        const diagramTemplate = document.getElementById('diagram-template');
+        let wireAnimationTimeout;
+
+        setupCollapsible('diagram-header', 'diagram-content', () => {
+            clearTimeout(wireAnimationTimeout);
+            diagramCodeElement.innerHTML = diagramTemplate.innerHTML;
+            const wires = diagramCodeElement.querySelectorAll('.wire');
+            wires.forEach(w => w.style.visibility = 'hidden');
+            
+            // Animate wires after a short delay
+            wireAnimationTimeout = setTimeout(() => animateWires(wires), 200);
+        });
+
+        function animateWires(wires) {
+            let i = 0;
+            function drawWire() {
+                if (i < wires.length) {
+                    wires[i].style.visibility = 'visible';
+                    i++;
+                    setTimeout(drawWire, 15); // Adjust speed of wire drawing
+                }
+            }
+            drawWire();
+        }
+
+        // --- Image Gallery Logic ---
+        const galleryImages = [
+            'http://googleusercontent.com/file_content/18',
+            'http://googleusercontent.com/file_content/19',
+            'http://googleusercontent.com/file_content/20',
+            'http://googleusercontent.com/file_content/21'
+        ];
+        let currentImageIndex = 0;
+        const galleryImageEl = document.getElementById('gallery-image');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+
+        function showImage(index) {
+            if (!galleryImageEl) return;
+            galleryImageEl.style.opacity = 0;
+            setTimeout(() => {
+                galleryImageEl.src = galleryImages[index];
+                galleryImageEl.style.opacity = 1;
+            }, 300);
+        }
+
+        if(prevBtn && nextBtn) {
+            prevBtn.addEventListener('click', () => {
+                currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+                showImage(currentImageIndex);
+            });
+
+            nextBtn.addEventListener('click', () => {
+                currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+                showImage(currentImageIndex);
+            });
+        }
+        
+        // Initialize gallery on load
+        if(galleryImageEl) {
+           showImage(0);
+        }
+
+    </script>
+</body>
+</html>
